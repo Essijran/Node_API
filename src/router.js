@@ -3,7 +3,7 @@ const express = require('express')
 const route = express.Router()
 
 route.get('/users',(req, res)=>{
-    res.send('Testing the endpoint')
+    res.status(201).send(`Testing the endpoint ${req.age}`)
 })
 
 route.get('/user/:id',(req, res)=>{
