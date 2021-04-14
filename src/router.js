@@ -1,9 +1,16 @@
 const express = require('express')
+const fetch = require('node-fetch')
 
 const route = express.Router()
 
-route.get('/users',(req, res)=>{
-    res.status(201).send(`Testing the endpoint ${req.age}`)
+
+route.get('/books',async (req, res)=>{
+    const url = 'http://localhost:5000/api/books'
+    const {data, status} = await fetch(url)
+    .then( async data => {
+        return {data:await data.json(), status: data.status}
+    })
+    res.status(status).send(data)
 })
 
 route.get('/user/:id',(req, res)=>{
