@@ -57,7 +57,7 @@ describe('getBooks()', () => {
     })
 })
 
-xdescribe('getBookById()', () => {
+describe('getBookById()', () => {
     it('should return 200 when a specfic book is found', async () => {
         fetch.mockResolvedValue(
             Promise.resolve(
@@ -103,7 +103,7 @@ xdescribe('getBookById()', () => {
     })
 })
 
-xdescribe('addNewBook()', () => {
+describe('addNewBook()', () => {
     it('should return 201 when a new book is added', async () => {
         fetch.mockResolvedValue(
             Promise.resolve(
@@ -133,7 +133,7 @@ xdescribe('addNewBook()', () => {
     })
 })
 
-xdescribe('updateBookById()', () => {
+describe('updateBookById()', () => {
     it('should return 200 when a book is updated', async () => {
         fetch.mockResolvedValue(
             Promise.resolve(
@@ -161,7 +161,7 @@ xdescribe('updateBookById()', () => {
     })
 })
 
-xdescribe('updateBookTitle()', () => {
+describe('updateBookTitle()', () => {
     it('should return 201 when updating the title of a specific book', async () => {
         fetch.mockResolvedValue(
             Promise.resolve(
@@ -189,7 +189,7 @@ xdescribe('updateBookTitle()', () => {
     })
 })
 
-xdescribe('deleteBookById()', () => {
+describe('deleteBookById()', () => {
     it('should return 200 when deleting a book', async () => {
         fetch.mockResolvedValue(
             Promise.resolve(
