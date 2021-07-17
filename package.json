@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./src/server.js",
-    "test": "jest",
-    "unit-watch": "jest --watchAll",
+    "test": "jest --coverage",
+    "unit-watch": "jest --watchAll --coverage",
     "eslint": "./node_modules/.bin/eslint ./src/*.js",
     "lint-test": "npm run eslint && npm test",
     "eslint-fix": "./node_modules/.bin/eslint ./src/ --fix",
