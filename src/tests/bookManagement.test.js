@@ -37,23 +37,14 @@ describe('getBooks()', () => {
 
         expect(res.statusCode).toEqual(200)
         expect(res._getJSON()).toEqual('data')
-
     })
     it('should return 404 code when there is an error', async () => {
-        fetch.mockRejectedValue(
-            Promise.reject(
-                new Error('Error')
-            )
-        )
+        fetch.mockRejectedValue(new Error('Error'))
         const { req, res } = getReqAndResMock()
-        try {
-            await getBooks(req, res)
-        } catch (err) {
-            console.log(err)
-        }
-
+        await getBooks(req, res)
 
         expect(res.statusCode).toEqual(404)
+        expect(res._getJSON()).toEqual('Error')
     })
 })
 
@@ -75,16 +66,12 @@ describe('getBookById()', () => {
         expect(res.statusCode).toEqual(200)
     })
     it('should return 404 when no book is found', async () => {
-        fetch.mockRejectedValue(
-            Promise.reject(
-                new Error('message')
-            )
-        )
+        fetch.mockRejectedValue(new Error('message'))
         const { req, res } = getReqAndResMock({ id: '1' })
         await getBookById(req, res)
 
         expect(res.statusCode).toEqual(404)
-
+        expect(res._getJSON()).toEqual('message')
     })
     it('should return 404 when response is not ok', async () => {
         fetch.mockResolvedValue(
@@ -97,9 +84,9 @@ describe('getBookById()', () => {
         )
         const { req, res } = getReqAndResMock({ id: '1' })
         await getBookById(req, res)
+
         expect(res.statusCode).toEqual(404)
         expect(res._getJSON()).toEqual('Not Found')
-
     })
 })
 
@@ -121,15 +108,12 @@ describe('addNewBook()', () => {
         expect(res.statusCode).toEqual(201)
     })
     it('should return 404 when there is an error', async () => {
-        fetch.mockRejectedValue(
-            Promise.reject(
-                new Error('Error')
-            )
-        )
+        fetch.mockRejectedValue(new Error('Error'))
         const { req, res } = getReqAndResMock()
         await addNewBook(req, res)
 
         expect(res.statusCode).toEqual(404)
+        expect(res._getJSON()).toEqual('Error')
     })
 })
 
@@ -149,15 +133,13 @@ describe('updateBookById()', () => {
         expect(res.statusCode).toEqual(200)
     })
     it('should return 404 when there is an error', async () => {
-        fetch.mockRejectedValue(
-            Promise.reject(
-                new Error('Error')
-            )
-        )
+        fetch.mockRejectedValue(new Error('Error'))
 
         const { req, res } = getReqAndResMock()
         await updateBookById(req, res)
+
         expect(res.statusCode).toEqual(404)
+        expect(res._getJSON()).toEqual('Error')
     })
 })
 
@@ -174,17 +156,16 @@ describe('updateBookTitle()', () => {
 
         const { req, res } = getReqAndResMock()
         await updateBookTitle(req, res)
+
         expect(res._getJSON()).toEqual('data')
         expect(res.statusCode).toEqual(201)
     })
     it('should return 404 when there is an error updating a book title', async () => {
-        fetch.mockRejectedValue(
-            Promise.reject(
-                new Error('Error')
-            )
-        )
+        fetch.mockRejectedValue(new Error('Error'))
         const { req, res } = getReqAndResMock()
         await updateBookTitle(req, res)
+
+        expect(res._getJSON()).toEqual('Error')
         expect(res.statusCode).toEqual(404)
     })
 })
@@ -201,19 +182,17 @@ describe('deleteBookById()', () => {
         )
         const { req, res } = getReqAndResMock()
         await deleteBookById(req, res)
+
         expect(res._getJSON()).toEqual('data')
         expect(res.statusCode).toEqual(200)
     })
     it('should return 404 when there is an error', async () => {
-        fetch.mockRejectedValue(
-            Promise.reject(
-                new Error('Error')
-            )
-        )
+        fetch.mockRejectedValue(new Error('Error'))
 
         const { req, res } = getReqAndResMock()
         await deleteBookById(req, res)
 
         expect(res.statusCode).toEqual(404)
+        expect(res._getJSON()).toEqual('Error')
     })
 })
